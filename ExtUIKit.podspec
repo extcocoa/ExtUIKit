@@ -28,6 +28,7 @@ An extended UIKit for iOS Dev.
   s.source           = { :git => 'https://github.com/jessehao/ExtUIKit.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/jeasyhg'
 
+  s.swift_version = '4.2'
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'ExtUIKit/Classes/**/*'
