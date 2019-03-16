@@ -7,14 +7,8 @@
 
 import UIKit
 
-extension UIControl.State : Hashable {
-	public var hashValue: Int {
-		return self.rawValue.hashValue
-	}
-}
-
 open class ExtUIButton : UIButton {
-	private var backgroundColorDict:[UIControl.State:UIColor] = [:]
+	private var backgroundColorDict:[UInt:UIColor] = [:]
 	
 	// MARK: - Interface
 	open var foregroundColor:UIColor? {
@@ -50,14 +44,14 @@ open class ExtUIButton : UIButton {
 	
 	// MARK: - Operations
 	open func setBackgroundColor(_ color: UIColor?, for state: UIControl.State) {
-		self.backgroundColorDict[state] = color
+		self.backgroundColorDict[state.rawValue] = color
 		if self.state == state {
 			self.redrawBackgroundColor()
 		}
 	}
 	
 	open func redrawBackgroundColor() {
-		self.backgroundColor = self.backgroundColorDict[self.state] ?? self.backgroundColorDict[.normal]
+		self.backgroundColor = self.backgroundColorDict[self.state.rawValue] ?? self.backgroundColorDict[UIControl.State.normal.rawValue]
 	}
 }
 
