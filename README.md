@@ -11,6 +11,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+**iOS 9.0**
+
 ## Installation
 
 ExtUIKit is available through [CocoaPods](https://cocoapods.org). To install
@@ -20,9 +22,15 @@ it, simply add the following line to your Podfile:
 pod 'ExtUIKit'
 ```
 
-## Author
+## Progress
 
-jessehao, jeasygates@hotmail.com
+- [ ] ExtUIView
+  - [ ] ExtUIControl
+    - [x] ExtUIButton
+    - [ ] ExtUITextField
+  - [x] ExtUITableView
+  - [ ] ExtUICollectionView
+    - [ ] ExtUICollectionViewGridLayout
 
 ## License
 
