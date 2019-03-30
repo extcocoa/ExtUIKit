@@ -30,6 +30,7 @@ pod 'ExtUIKit'
     - [ ] ExtUITextField
   - [x] ExtUITableView
   - [ ] ExtUICollectionView
+    - [ ] ExtUICollectionViewTagLayout
     - [ ] ExtUICollectionViewGridLayout
 
 ## License
