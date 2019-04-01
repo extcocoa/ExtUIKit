@@ -8,17 +8,17 @@
 
 import UIKit
 
-protocol ExtUICollectionViewTagLayoutDelegate: class {
+public protocol ExtUICollectionViewTagLayoutDelegate: class {
 	/// - Returns: The item's width
 	func tagFlowLayout(_ layout: ExtUICollectionViewTagLayout, widthAtIndexPath indexPath: IndexPath) -> CGFloat
 }
 
-class ExtUICollectionViewTagLayout: UICollectionViewFlowLayout {
+open class ExtUICollectionViewTagLayout: UICollectionViewFlowLayout {
 	
 	// MARK: - Interface
-	public var itemHeight: CGFloat = 30 // item's height
-	public var sectionHeight: CGFloat = 50 // section's height
-	public weak var delegate: ExtUICollectionViewTagLayoutDelegate?
+	open var itemHeight: CGFloat = 30 // item's height
+	open var sectionHeight: CGFloat = 50 // section's height
+	open weak var delegate: ExtUICollectionViewTagLayoutDelegate?
 	
 	// Privates
 	private var itemAttributes: [UICollectionViewLayoutAttributes] = []
@@ -27,17 +27,21 @@ class ExtUICollectionViewTagLayout: UICollectionViewFlowLayout {
 	private var numberOfRows:CGFloat = 0
 	private var numberOfSections:CGFloat = 0
 	
-	override func prepare()  {
+	override open func prepare()  {
 		super.prepare()
 		self.scrollDirection = .vertical
 		self.configAttributes()
 	}
 	
-	private func configAttributes() {
+	private func clearAll() {
 		self.itemAttributes.removeAll()
 		self.headerViewAttributes.removeAll()
 		self.heightOfItems.removeAll()
 		self.numberOfRows = 0
+	}
+	
+	private func configAttributes() {
+		self.clearAll()
 		let width = self.collectionView?.frame.size.width ?? 0
 		let numberOfSections = self.collectionView?.numberOfSections ?? 0
 		self.numberOfSections = CGFloat(numberOfSections)
@@ -62,7 +66,7 @@ class ExtUICollectionViewTagLayout: UICollectionViewFlowLayout {
 				attribute.size.height = itemHeight
 				attribute.size.width = min(maxWidth, width)
 				let currentWidth = lastOrigin.x + lastSize.width + self.minimumInteritemSpacing + attribute.size.width - self.sectionInset.left
-				if  currentWidth > maxWidth { // 这一行显示不完
+				if  currentWidth > maxWidth { // NewLine to show
 					attribute.frame.origin.x = self.sectionInset.left
 					attribute.frame.origin.y = lastOrigin.y + lastSize.height + self.minimumLineSpacing
 					numberOfRows += 1
@@ -83,31 +87,30 @@ class ExtUICollectionViewTagLayout: UICollectionViewFlowLayout {
 			let heightOfItemsForEachSection = (numberOfRows - 1) * self.minimumLineSpacing + numberOfRows * itemHeight + self.sectionInset.top + self.sectionInset.bottom
 			self.heightOfItems.append(heightOfItemsForEachSection)
 			self.numberOfRows += numberOfRows
-			
 		}
 	}
 	
-	override var collectionViewContentSize: CGSize {
+	override open var collectionViewContentSize: CGSize {
 		let sumOfItemHeight = self.heightOfItems.reduce(0) { $0 + $1 }
 		let height = sumOfItemHeight + sectionHeight * numberOfSections
 		return CGSize(width: self.collectionView?.frame.width ?? 0, height: height)
 	}
 	
-	override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+	override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
 		var allAttributes: [UICollectionViewLayoutAttributes] = []
 		allAttributes.append(contentsOf: self.headerViewAttributes)
 		allAttributes.append(contentsOf: self.itemAttributes)
 		return allAttributes
 	}
 	
-	override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+	override open func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
 		if elementKind == UICollectionView.elementKindSectionHeader {
 			return self.headerViewAttributes[indexPath.section]
 		}
 		return UICollectionViewLayoutAttributes()
 	}
 	
-	override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+	override open func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
 		return true
 	}
 }
