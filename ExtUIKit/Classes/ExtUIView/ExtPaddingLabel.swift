@@ -8,15 +8,15 @@
 
 import UIKit
 
-class ExtPaddingLabel: UILabel {
-    var edgeInsets: UIEdgeInsets = .zero
+open class ExtPaddingLabel: UILabel {
+    open var edgeInsets: UIEdgeInsets = .zero
     
-    override var intrinsicContentSize: CGSize {
+    open override var intrinsicContentSize: CGSize {
         let contentSize = super.intrinsicContentSize
         return CGSize(width: contentSize.width + self.edgeInsets.left + self.edgeInsets.right, height: contentSize.height + self.edgeInsets.top + self.edgeInsets.bottom)
     }
     
-    override func drawText(in rect: CGRect) {
+    open override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: self.edgeInsets))
     }
 }
