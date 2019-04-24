@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ExtUIKit'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'Extended UIKit for iOS'
 
 # This description is used to generate tags and improve search results.
@@ -21,14 +21,14 @@ Pod::Spec.new do |s|
 An extended UIKit for iOS Dev.
                        DESC
 
-  s.homepage         = 'https://github.com/jessehao/ExtUIKit'
+  s.homepage         = 'https://github.com/extcocoa/ExtUIKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'jessehao' => 'jeasygates@hotmail.com' }
-  s.source           = { :git => 'https://github.com/jessehao/ExtUIKit.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/extcocoa/ExtUIKit.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/jeasyhg'
 
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'ExtUIKit/Classes/**/*'
