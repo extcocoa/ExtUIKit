@@ -25,6 +25,7 @@ pod 'ExtUIKit'
 ## Progress
 
 - [ ] ExtUIView
+  - [x] ExtPaddingLabel
   - [ ] ExtUIControl
     - [x] ExtUIButton
     - [ ] ExtUITextField
